@@ -72,9 +72,7 @@ class User extends CI_Controller {
                     redirect('user');
                 } else
                     $data['error'] = mysql_error();
-
         }
-
         $this->load->view('user/edit', $data);
     }
 
