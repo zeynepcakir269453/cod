@@ -23,6 +23,7 @@ class User_model extends CI_Model {
     // insert new record 
     public function create($data) {
         $this->db->insert($this->_table, $data);
+        log_message('info', 'Kullanıcı eklendi.');
         return $this->db->affected_rows();
     }
 

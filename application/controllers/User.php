@@ -21,7 +21,6 @@ class User extends CI_Controller {
     public function index() {
         $data = array();
         $data['pageTitle'] = "Manage User";
-
         //get all user data
         $data['all_data'] = $this->user_model->getAll();
 
@@ -45,6 +44,8 @@ class User extends CI_Controller {
 
                 if ($this->user_model->create($addData)) {
                     $this->session->set_flashdata('success_msg', 'Add Successfully!!');
+                    log_message('info', 'USER_ADDED name= ' .$addData['name'].' balance='.$addData['balance']);
+
                     redirect('user');
                 } else
                     $data['error'] = mysql_error();
@@ -69,6 +70,7 @@ class User extends CI_Controller {
 
                 if ($this->user_model->update($addData, $id)) {
                     $this->session->set_flashdata('success_msg', 'Update Successfully!!');
+                    log_message('info', 'USER_UpDATED name= ' .$addData['name'].'  balance='.$addData['balance']);
                     redirect('user');
                 } else
                     $data['error'] = mysql_error();
@@ -88,12 +90,10 @@ class User extends CI_Controller {
 
     public function delete($id) {
         $getData = $this->user_model->get_single_data($id);
-        if ($getData->image) {
-            $this->file_processing->delete_file($getData->image, './assets/image/');
-            $this->file_processing->delete_file($getData->image, './assets/image/thumbs/');
-        }
+
         if ($this->user_model->delete($id)) {
             $this->session->set_flashdata('success_msg', 'Successfully Deleted!!');
+            log_message('info', 'USER_DELETED ID= ' .$id.' user deleted');
             redirect('user');
         }
     }
