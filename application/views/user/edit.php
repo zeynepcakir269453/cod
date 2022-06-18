@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="balance">Bakiye</label>
-                            <input type="balance" class="form-control" name="balance" value="<?php echo set_value('email', $getData->balance); ?>" placeholder="Enter email">
+                            <input type="text" class="form-control" name="balance" value="<?php echo set_value('balance', $getData->balance); ?>" placeholder="Enter email">
                         </div>
 
                         <button type="submit" name="submit" value="1" class="btn btn-primary">Submit</button>
