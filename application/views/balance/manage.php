@@ -13,7 +13,6 @@
             <h2>Ürünler<?php echo  'Merhaba '.$this->session->userdata('name');?></h2>
             <a href="<?php echo base_url('products/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Ürün Ekle</a>
             <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px"> <i class="fa fa-user" aria-hidden="true"></i>Kullanıcılar</a>
-            <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>
 
             <?php if (!empty($all_data)) { ?>
                 <table class="table table-bordered">

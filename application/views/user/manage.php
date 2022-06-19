@@ -14,7 +14,7 @@
             <a href="<?php echo base_url('products/index'); ?>" class="btn btn-success pull-right" style="margin-bottom: 10px"> <i class="fa fa-product-hunt" aria-hidden="true"></i> Ürünlerim</a>
 
             <a href="<?php echo base_url('user/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Kullanıcı Ekle</a>
-            <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>
+            <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>
 
             <?php if (!empty($all_data)) { ?>
                 <table class="table table-bordered">

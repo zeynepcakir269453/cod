@@ -32,7 +32,7 @@ class User extends CI_Controller {
         // $data['pageTitle'] = "Manage User";
         //get all user data
         //$data['all_data'] = $this->user_model->getAll();
-        if ($this->session->userdata()) {
+        if ($this->session->userdata('name')) {
             $name=$this->input->post('name');
             $pass=md5($this->input->post('password'));
             // $data['name'] =$name;
@@ -42,7 +42,8 @@ class User extends CI_Controller {
             if($data)
             {
                 $this->session->set_userdata($data['getData']);
-                $this->load->view('products/manage', $data);
+                // $this->load->view('balance/edit', $data);
+                redirect('balance/edit');
             }
             else
             {

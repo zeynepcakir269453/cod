@@ -9,23 +9,21 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class User_model extends CI_Model {
+class Balance_model extends CI_Model {
 
     public $_table;
     public $_primary_key;
-    public $_name;
 
     function __construct() {
         parent::__construct();
-        $this->_table = 'user';
-        $this->_primary_key = 'user_id';
-        $this->_name = 'name';
+        $this->_table = 'balance_logs';
+        $this->_primary_key = 'id';
     }
 
     // insert new record 
     public function create($data) {
         $this->db->insert($this->_table, $data);
-        log_message('info', 'Kullanıcı eklendi.');
+        log_message('info', 'Ürün eklendi.');
         return $this->db->affected_rows();
     }
 
@@ -54,16 +52,9 @@ class User_model extends CI_Model {
         return $query->row();
     }
 
-    //get single data
-    public function get_single_data_login($name) {
-        $this->db->select('balance,user_id,name')->from($this->_table)->where($this->_name, $name);
-        $query = $this->db->get();
-        return $query->row_array();
-    }
-
     // update the information
     public function update($data, $id) {
-        if ($this->db->update($this->_table, $data, "user_id = " . $id))
+        if ($this->db->update($this->_table, $data, "id = " . $id))
             return TRUE;
         else
             return FALSE;
@@ -76,6 +67,3 @@ class User_model extends CI_Model {
     }
 
 }
-
-/* End of file user_model.php */
-/* Location: ./application/model/user_model.php */
