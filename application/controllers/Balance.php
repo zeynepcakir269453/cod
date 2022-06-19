@@ -21,8 +21,11 @@ class Balance extends CI_Controller {
 
     public function index() {
         $data = array();
-        $data['pageTitle'] = "Manage balance";
+        $data['pageTitle'] = "Manage Balance";
+        //get all user data
+        $data['all_data'] = $this->balance_model->getAll();
 
+        $this->load->view('balance/manage', $data);
     }
 
     public function create() {

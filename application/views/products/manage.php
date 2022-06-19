@@ -18,10 +18,11 @@
                     <?php echo $this->session->flashdata('success_msg'); ?>
                 </div>
             <?php } ?>
-            <h2>Ürünler<?php echo  'Merhaba '.$this->session->userdata('name').$this->session->userdata('authority');?></h2>
+            <h2>Ürünler</h2>
+            <h3><?php echo  'Merhaba '.$this->session->userdata('name');?></h3>
             <a href="<?php echo base_url('products/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Ürün Ekle</a>
             <?php if ($this->session->userdata('authority')==2) { ?>
-                <a href="<?php echo base_url('user/logout'); ?>" class="btn btn-danger pull-right" style="margin-bottom: 10px">Bakiye Logları</a>
+                <a href="<?php echo base_url('balance/index'); ?>" class="btn btn-danger pull-right" style="margin-bottom: 10px">Bakiye Logları</a>
             <?php } ?>
             <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px"> <i class="fa fa-user" aria-hidden="true"></i>Kullanıcılar</a>
             <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>

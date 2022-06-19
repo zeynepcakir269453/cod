@@ -10,39 +10,46 @@
     </head>
     <body>
         <div class="container">
-            <h2>Ürünler<?php echo  'Merhaba '.$this->session->userdata('name');?></h2>
-            <a href="<?php echo base_url('products/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Ürün Ekle</a>
+            <h2>Bakiye Geçmişi</h2>
+            <h3><?php echo  'Merhaba '.$this->session->userdata('name');?></h3>
+            <a href="<?php echo base_url('products/index'); ?>" class="btn btn-success pull-right" style="margin-bottom: 10px"> <i class="fa fa-product-hunt" aria-hidden="true"></i> Ürünlerim</a>
             <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px"> <i class="fa fa-user" aria-hidden="true"></i>Kullanıcılar</a>
 
+            <a href="<?php echo base_url('user/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Kullanıcı Ekle</a>
+            <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>
+            <?php if ($this->session->userdata('name')) { ?>
+                <a href="<?php echo base_url('user/logout'); ?>" class="btn btn-danger pull-right" style="margin-bottom: 10px">Çıkış Yap</a>
+            <?php }else{ ?>
+                <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px">Giriş Yap</a>
+            <?php } ?>
             <?php if (!empty($all_data)) { ?>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="5%">
+                        <col width="30%">
                         <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="35%">
+                        <col width="10%">
+                        <col width="15%">
                     </colgroup>
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Ürün Adı</th>
-                            <th>Açıklama</th>
-                            <th>Fiyat</th>
-                            <th>İşlem</th>
+                            <th>Kullanıcı Adı</th>
+                            <th>Aksiyon</th>
+                            <th>Önceki Bakiye</th>
+                            <th>İşlemden Sonraki Bakiye</th>
+                            <th>İşlem Zamanı</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($all_data as $key => $aData) { ?>
                             <tr>
                                 <td><?php echo $key + 1; ?></td>
-                                <td><?php echo $aData->name; ?></td>
-                                <td><?php echo $aData->descrition; ?></td>
-                                <td><?php echo $aData->price; ?></td>
-                                <td>
-                                    <a href="<?php echo site_url('products/edit/' . $aData->id); ?>" class="btn btn-primary">Düzenle</a>
-                                    <a href="<?php echo site_url('products/delete/' . $aData->id); ?>" class="btn btn-danger" onclick = 'return confirm("Silmek İstediğine Emin Misin!");'>Sil</a>
-                                </td>
+                                <td><?php echo $aData->user; ?></td>
+                                <td><?php echo $aData->action; ?></td>
+                                <td><?php echo $aData->pre_balance; ?></td>
+                                <td><?php echo $aData->new_balance; ?></td>
+                                <td><?php echo $aData->created_date; ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
