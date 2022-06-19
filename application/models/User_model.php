@@ -56,7 +56,7 @@ class User_model extends CI_Model {
 
     //get single data
     public function get_single_data_login($name) {
-        $this->db->select('balance,user_id,name')->from($this->_table)->where($this->_name, $name);
+        $this->db->select('balance,user_id,name,authority')->from($this->_table)->where($this->_name, $name);
         $query = $this->db->get();
         return $query->row_array();
     }

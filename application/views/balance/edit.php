@@ -38,6 +38,7 @@
                             <label for="new_balance">Bakiye Ekle</label>
                             <input type="text" class="form-control" name="new_balance" >
                         </div>
+                        <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px">İptal</a>
 
                         <button type="submit" name="submit" value="1" class="btn btn-primary">Ekle</button>
                     </form>

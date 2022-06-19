@@ -15,8 +15,11 @@
 
             <a href="<?php echo base_url('user/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Kullanıcı Ekle</a>
             <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i>Bakiye Yükle</a>
-
-            <?php if (!empty($all_data)) { ?>
+            <?php if ($this->session->userdata('name')) { ?>
+                <a href="<?php echo base_url('user/logout'); ?>" class="btn btn-danger pull-right" style="margin-bottom: 10px">Çıkış Yap</a>
+            <?php }else{ ?>
+                <a href="<?php echo base_url('user/indexlogin'); ?>" class="btn btn-warning pull-right" style="margin-bottom: 10px">Giriş Yap</a>
+            <?php } ?>            <?php if (!empty($all_data)) { ?>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="5%">

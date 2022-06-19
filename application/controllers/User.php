@@ -32,7 +32,7 @@ class User extends CI_Controller {
         // $data['pageTitle'] = "Manage User";
         //get all user data
         //$data['all_data'] = $this->user_model->getAll();
-        if ($this->session->userdata('name')) {
+        if ($this->input->post('name')) {
             $name=$this->input->post('name');
             $pass=md5($this->input->post('password'));
             // $data['name'] =$name;
@@ -75,7 +75,14 @@ class User extends CI_Controller {
         }
         $this->load->view('user/view', $data);
     }
-
+    public function logout()
+    {
+        $data['pageTitle'] = "Manage User";
+        //get all user data
+        $data['all_data'] = $this->user_model->getAll();
+        $this->session->sess_destroy();
+        redirect('user');
+    }
     public function create() {
         $data = array();
         $data['pageTitle'] = " User Form";
