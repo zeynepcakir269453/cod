@@ -10,6 +10,14 @@
     </head>
     <body>
         <div class="container">
+            <?php if ($this->session->flashdata('success_msg')) { ?>
+                <div class="alert alert-success fade in">
+                    <button data-dismiss="alert" class="close close-sm" type="button">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <?php echo $this->session->flashdata('success_msg'); ?>
+                </div>
+            <?php } ?>
             <h2>Ürünler<?php echo  'Merhaba '.$this->session->userdata('name');?></h2>
             <a href="<?php echo base_url('products/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Ürün Ekle</a>
             <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px"> <i class="fa fa-user" aria-hidden="true"></i>Kullanıcılar</a>
@@ -41,6 +49,7 @@
                                 <td><?php echo $aData->descrition; ?></td>
                                 <td><?php echo $aData->price; ?></td>
                                 <td>
+                                    <a href="<?php echo site_url('products/sale/' . $aData->price); ?>" class="btn btn-warning" onclick = 'return confirm("Ürünü Satın Almak İstedğine Emin Misin!");'>Satın Al</a>
                                     <a href="<?php echo site_url('products/edit/' . $aData->id); ?>" class="btn btn-primary">Düzenle</a>
                                     <a href="<?php echo site_url('products/delete/' . $aData->id); ?>" class="btn btn-danger" onclick = 'return confirm("Silmek İstediğine Emin Misin!");'>Sil</a>
                                 </td>

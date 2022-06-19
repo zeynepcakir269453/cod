@@ -15,6 +15,8 @@ class Products extends CI_Controller {
 
         // load the model
         $this->load->model('products_model');
+        $this->load->model('user_model');
+        $this->load->model('balance_model');
         $this->load->library('file_processing');
     }
 
@@ -60,9 +62,7 @@ class Products extends CI_Controller {
         $data['getData'] = $getData = $this->products_model->get_single_data($id);
 
         if ($this->input->post('submit')) {
-
                 $addData = array();
-
                 $addData['name'] = $this->input->post('name');
                 $addData['descrition'] = $this->input->post('descrition');
                 $addData['price'] = $this->input->post('price');
@@ -83,6 +83,37 @@ class Products extends CI_Controller {
         if ($this->products_model->delete($id)) {
             $this->session->set_flashdata('success_msg', 'Successfully Deleted!!');
             log_message('info', 'products_DELETED ID= ' .$id.' products deleted');
+            redirect('products');
+        }
+    }
+
+    public function sale($price) {
+
+            $addData = array();
+            $id= $this->session->userdata('user_id');
+
+            $old_balance= $this->session->userdata('balance');
+            $product_balance= $price;
+        if ($old_balance>$product_balance) {
+            $addData['balance']=$old_balance-$product_balance;
+            $sumbalance=$addData['balance'];
+            if ($this->user_model->update($addData, $id)) {
+                $addData = array();
+                $addData['user']=$this->session->userdata('name');
+                $addData['pre_balance']=$old_balance;
+                $addData['new_balance']=$sumbalance;
+                $addData['action']='buyed product';
+                if ($this->balance_model->create($addData)) {
+                    $this->session->set_flashdata('success_msg', 'Add Successfully!!');
+                    $this->session->set_userdata('balance',$sumbalance);
+                    log_message('info', 'balance_updated user_name= ' .$addData['user'].' balance='.$sumbalance);
+
+                    redirect('products');
+                } else
+                    $data['error'] = mysql_error();
+            }
+        }else{
+            $this->session->set_flashdata('success_msg', 'Malesef Bakiyeniz Yetersizdir.Bakiye Yüklemeniz Gerekmektedir.');
             redirect('products');
         }
     }

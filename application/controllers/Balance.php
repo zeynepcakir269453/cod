@@ -49,6 +49,7 @@ class Balance extends CI_Controller {
                 $addData['user']=$this->session->userdata('name');
                 $addData['pre_balance']=$old_balance;
                 $addData['new_balance']=$sumbalance;
+                $addData['action']='added balance';
                 if ($this->balance_model->create($addData)) {
                     $this->session->set_flashdata('success_msg', 'Add Successfully!!');
                     $this->session->set_userdata('balance',$sumbalance);
