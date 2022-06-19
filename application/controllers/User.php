@@ -27,6 +27,54 @@ class User extends CI_Controller {
         $this->load->view('user/manage', $data);
     }
 
+    public function indexlogin() {
+        $data = array();
+        // $data['pageTitle'] = "Manage User";
+        //get all user data
+        //$data['all_data'] = $this->user_model->getAll();
+        if ($this->session->userdata()) {
+            $name=$this->input->post('name');
+            $pass=md5($this->input->post('password'));
+            // $data['name'] =$name;
+
+            $data['getData'] = $getData = $this->user_model->get_single_data_login($name);
+
+            if($data)
+            {
+                $this->session->set_userdata($data['getData']);
+                $this->load->view('products/manage', $data);
+            }
+            else
+            {
+                $this->load->view('user/login', $data);
+            }
+        }else
+         $this->load->view('user/login', $data);
+    }
+
+    public function login()
+    {
+        $data = array();
+        if($this->input->post('name'))
+        {
+            $name=$this->input->post('name');
+            $pass=$this->input->post('password');
+
+            $data['getData'] = $getData = $this->user_model->get_single_data_login($name);
+
+            if($data)
+            {
+                $this->session->set_userdata($data);
+                $this->load->view('user/view', $data);
+            }
+            else
+            {
+                $this->load->view('user/view', $data);
+            }
+        }
+        $this->load->view('user/view', $data);
+    }
+
     public function create() {
         $data = array();
         $data['pageTitle'] = " User Form";

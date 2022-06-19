@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Ürünler</h2>
+            <h2>Ürünler<?php  echo $this->session->userdata('balance');?></h2>
             <a href="<?php echo base_url('products/create'); ?>" class="btn btn-info pull-right" style="margin-bottom: 10px"> <i class="fa fa-plus" aria-hidden="true"></i> Ürün Ekle</a>
             <a href="<?php echo base_url('user/index'); ?>" class="btn btn-default pull-right" style="margin-bottom: 10px"> <i class="fa fa-user" aria-hidden="true"></i>Kullanıcılar</a>
 

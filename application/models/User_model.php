@@ -13,11 +13,13 @@ class User_model extends CI_Model {
 
     public $_table;
     public $_primary_key;
+    public $_name;
 
     function __construct() {
         parent::__construct();
         $this->_table = 'user';
         $this->_primary_key = 'user_id';
+        $this->_name = 'name';
     }
 
     // insert new record 
@@ -50,6 +52,13 @@ class User_model extends CI_Model {
         $this->db->select('*')->from($this->_table)->where($this->_primary_key, $id);
         $query = $this->db->get();
         return $query->row();
+    }
+
+    //get single data
+    public function get_single_data_login($name) {
+        $this->db->select('balance')->from($this->_table)->where($this->_name, $name);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     // update the information
